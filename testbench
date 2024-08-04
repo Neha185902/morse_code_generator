@@ -1,0 +1,51 @@
+module tb_morse_code_generator;
+
+    
+    reg clk;
+    reg reset_button;
+    reg [4:0] slide_switches;
+    wire [6:0] seg_display;
+    wire [15:0] leds;
+    wire D0_AN;
+
+        morse_code_generator uut (
+        .clk(clk),
+        .reset_button(reset_button),
+        .slide_switches(slide_switches),
+        .seg_display(seg_display),
+        .leds(leds),
+        .D0_AN(D0_AN)
+    );
+
+       initial begin
+        clk = 0;
+        forever #5 clk = ~clk;
+    end
+        initial begin
+          reset_button = 1;
+        slide_switches = 5'b00000;
+        #10;
+        reset_button = 0;
+
+       
+        #10 slide_switches = 5'b00000;
+        #10 slide_switches = 5'b00001;
+        #10 slide_switches = 5'b00010; 
+        #10 slide_switches = 5'b00011; 
+        #10 slide_switches = 5'b00100; 
+        #10 slide_switches = 5'b00101;
+        #10 slide_switches = 5'b00110; 
+        #10 slide_switches = 5'b00111;
+        #10 slide_switches = 5'b01000; 
+        #10 slide_switches = 5'b01001; 
+        #10 slide_switches = 5'b01010; 
+        #10 slide_switches = 5'b01011;
+        #10 slide_switches = 5'b01100;
+        #10 slide_switches = 5'b01101;
+        #10 slide_switches = 5'b01110; 
+        #10 slide_switches = 5'b01111; 
+
+        
+        #10 $finish;
+    end
+endmodule
